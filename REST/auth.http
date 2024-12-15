@@ -1,0 +1,26 @@
+@baseUrl=http://localhost:3000/auth
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbTRxOWhhYXkwMDAwcDFlazEzODhoam05IiwiaWF0IjoxNzM0MzA2NzgzLCJleHAiOjE3MzY4OTg3ODN9.Y11XLQwuS9exbpQj0fIFh_VELLnU4IdJIwMYl2i-fVs
+
+### Log an user
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "luken.virtual@gmail.com",
+    "password": "password"
+}
+
+### Register an user
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+    "email": "xyka.now@gmail.com",
+    "password": "password",
+    "firstName": "Xyka Now"
+}
+
+### Get authenticated user
+GET {{baseUrl}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
