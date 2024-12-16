@@ -30,7 +30,7 @@ npx prisma init
 
 ### Create a deployed MySQL database
 
-[https://planetscale.com/](https://neon.tech/)
+[https://neon.tech/](https://neon.tech/)
 
 ### Push prisma db schema to database
 
