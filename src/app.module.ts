@@ -8,7 +8,7 @@ import { ConfigModule } from '@nestjs/config';
     UserModule,
     AuthModule,
     ConfigModule.forRoot({
-      isGlobal: true, // optionnel, pour éviter de le réimporter dans tous les modules
+      isGlobal: true,
     }),
   ],
   controllers: [],
