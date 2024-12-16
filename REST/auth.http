@@ -1,4 +1,4 @@
-@baseUrl=http://localhost:3000/auth
+@baseUrl=http://localhost:8000/auth
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbTRxOWhhYXkwMDAwcDFlazEzODhoam05IiwiaWF0IjoxNzM0MzA2NzgzLCJleHAiOjE3MzY4OTg3ODN9.Y11XLQwuS9exbpQj0fIFh_VELLnU4IdJIwMYl2i-fVs
 
 ### Log an user
