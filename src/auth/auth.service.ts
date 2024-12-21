@@ -5,6 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UserPayload } from './jwt.strategy';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LogUserDto } from './dto/login-user.dto';
+import { error } from 'console';
 
 @Injectable()
 export class AuthService {
@@ -37,29 +38,36 @@ export class AuthService {
   }
 
   async register({ registerBody }: { registerBody: CreateUserDto }) {
-    const { email, firstName, password } = registerBody;
+    try {
+      const { email, firstName, password } = registerBody;
 
-    const existingUser = await this.prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
+      const existingUser = await this.prisma.user.findUnique({
+        where: {
+          email,
+        },
+      });
 
-    if (existingUser) {
-      throw new Error('Un compte existe déjà à cette adresse email.');
+      if (existingUser) {
+        throw new Error('Un compte existe déjà à cette adresse email.');
+      }
+
+      const hashPassword = await this.hashPassword({ password });
+
+      const createdUser = await this.prisma.user.create({
+        data: {
+          email,
+          password: hashPassword,
+          firstName,
+        },
+      });
+
+      return this.authenticateUser({ userId: createdUser.id });
+    } catch (e) {
+      return {
+        error: true,
+        message: e.message,
+      };
     }
-
-    const hashPassword = await this.hashPassword({ password });
-
-    const createdUser = await this.prisma.user.create({
-      data: {
-        email,
-        password: hashPassword,
-        firstName,
-      },
-    });
-
-    return this.authenticateUser({ userId: createdUser.id });
   }
 
   private async hashPassword({ password }: { password: string }) {
